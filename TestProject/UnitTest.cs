@@ -38,6 +38,9 @@ namespace TestProject
             objPlaylistParameters.Type = "any";
             Playlist objPlaylist = new Playlist(objPlaylistParameters.GetParameters());
             byte[] bytReturnedPlaylist = RequestHandler.Request(objPlaylist);
+            System.IO.FileStream objFileStream = new System.IO.FileStream("C:\\playlist.m3u8", System.IO.FileMode.Create, System.IO.FileAccess.Write);
+            objFileStream.Write(bytReturnedPlaylist,0,bytReturnedPlaylist.Length);
+            objFileStream.Close();
             string strReturnedPlaylist = System.Text.Encoding.ASCII.GetString(bytReturnedPlaylist);
         }        
     }

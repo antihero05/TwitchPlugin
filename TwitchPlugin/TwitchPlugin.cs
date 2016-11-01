@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 using MediaPortal.Dialogs;
 
 namespace TwitchPlugin
 {
+
+    [PluginIcons("TwitchPlugin.Resources.TwitchPluginEnabled.png", "TwitchPlugin.Resources.TwitchPluginDisabled.png")]
+
     public class TwitchPlugin : GUIWindow, ISetupForm
     {
         #region ISetupForm Members
@@ -36,18 +40,23 @@ namespace TwitchPlugin
             return false;
         }
 
+        public override bool Init()
+        {
+            return Load(GUIGraphicsContext.Skin + @"\TwitchPlugin.xml");
+        }
+
         public bool GetHome(out string strButtonText, out string strButtonImage, out string strButtonImageFocus, out string strPictureImage)
         {
-            strButtonText = string.Empty;
+            strButtonText = this.PluginName();
             strButtonImage = string.Empty;
             strButtonImageFocus = string.Empty;
-            strPictureImage = string.Empty;
+            strPictureImage = "hover_my twitchplugin.png";
             return true;
         }
 
         public int GetWindowId()
         {
-            return 1337;
+            return 13371;
         }
 
         public bool HasSetup()
@@ -57,7 +66,7 @@ namespace TwitchPlugin
 
         public string PluginName()
         {
-            return "TwitchPlugin";
+            return "Twitch";
         }
 
         public void ShowPlugin()

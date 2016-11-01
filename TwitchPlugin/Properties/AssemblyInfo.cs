@@ -20,11 +20,12 @@ using MediaPortal.Common.Utils;
 [assembly: Guid("0c8f384f-4846-41bc-bd66-27c40b1f45c9")]
 
 // Version information of the assembly
-[assembly: AssemblyVersion("0.1.0.3")]
-[assembly: AssemblyFileVersion("0.1.0.3")]
+[assembly: AssemblyVersion("0.1.0.4")]
+[assembly: AssemblyFileVersion("0.1.0.4")]
 
 // Information for the MediaPortal plugin system of the assembly
 [assembly: CompatibleVersion("1.7.0.0")]
 [assembly: UsesSubsystem("MP", true)]
+[assembly: UsesSubsystem("MP.Config", true)]
 [assembly: UsesSubsystem("MP.Players", true)]
 [assembly: UsesSubsystem("MP.Plugins", true)]

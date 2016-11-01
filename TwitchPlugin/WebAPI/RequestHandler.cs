@@ -15,14 +15,20 @@ namespace TwitchPlugin.WebAPI
 
     public static class RequestHandler
     {
+        #region Declaration
 
-        # region Methods
+        private const string mClientID = "9lnhiieac8zs5f8qgbqd0416bxt3lyx";
+
+        #endregion Declaration
+
+        #region Methods
 
         static public object Request(INamespace objNamespace)
         {
             UriBuilder Builder = new UriBuilder(objNamespace.RequestURL);
             HttpWebRequest HTTPRequest = WebRequest.Create(Builder.Uri) as HttpWebRequest;
             HTTPRequest.Accept = "application/vnd.twitchtv.v3+json";
+            HTTPRequest.Headers.Add("Client-ID", mClientID);
             HttpWebResponse HTTPResponse = HTTPRequest.GetResponse() as HttpWebResponse;
             if (HTTPResponse.StatusCode == HttpStatusCode.OK)
             {
@@ -46,8 +52,10 @@ namespace TwitchPlugin.WebAPI
             {
                 byte[] bytBuffer = new byte[8192];
                 Stream HTTPStream = HTTPResponse.GetResponseStream();
-                HTTPStream.Read(bytBuffer, 0, bytBuffer.Length);
-                return bytBuffer;
+                int intBytesRead = HTTPStream.Read(bytBuffer, 0, bytBuffer.Length);
+                byte[] bytReturn = new byte[intBytesRead];
+                Buffer.BlockCopy(bytBuffer, 0, bytReturn, 0, intBytesRead);
+                return bytReturn;
             }
             else
             {
@@ -55,7 +63,7 @@ namespace TwitchPlugin.WebAPI
             }
         }
 
-        # endregion Methods
+        #endregion Methods
 
     }
 }
