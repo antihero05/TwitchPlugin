@@ -119,6 +119,8 @@ namespace TwitchPlugin
 
         protected override void OnPageLoad()
         {
+
+            // This is only for testing purposes with the GUI.
             guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.CoverFlow;
             //guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
             //guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
