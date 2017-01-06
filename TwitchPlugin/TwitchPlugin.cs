@@ -14,6 +14,18 @@ namespace TwitchPlugin
 
     public class TwitchPlugin : GUIWindow, ISetupForm
     {
+
+        #region Skin Definition
+
+        /// <summary>
+        /// This region is providing the necessary properties for skin controls.
+        /// </summary>
+
+        [SkinControlAttribute(50)]
+        public GUIFacadeControl guiFacadeControl = null;
+
+        #endregion Skin Definition
+
         #region ISetupForm Members
 
         /// <summary>
@@ -103,6 +115,23 @@ namespace TwitchPlugin
         {
             Log.Info("TwitchPlugin: Stopping");
             Log.Info("TwitchPlugin: Stopped!");
+        }
+
+        protected override void OnPageLoad()
+        {
+            guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.CoverFlow;
+            //guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
+            //guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
+            //guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.List;
+            //guiFacadeControl.CurrentLayout = GUIFacadeControl.Layout.SmallIcons;
+            GUIListItem guiItem1 = new GUIListItem("Item1");
+            guiItem1.Label = "Testlabel 1";
+            guiItem1.ThumbnailImage = Config.GetFolder(Config.Dir.Skin) + @"\Titan\Media\image1.jpg";
+            guiFacadeControl.Add(guiItem1);
+            GUIListItem guiItem2 = new GUIListItem("Item2");
+            guiItem2.Label = "Testlabel 2";
+            guiItem2.ThumbnailImage = Config.GetFolder(Config.Dir.Skin) + @"\Titan\Media\image2.jpg";
+            guiFacadeControl.Add(guiItem2);
         }
 
         #endregion

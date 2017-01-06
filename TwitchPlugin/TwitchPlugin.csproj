@@ -74,7 +74,9 @@
     <EmbeddedResource Include="Resources\TwitchPluginDisabled.png" />
     <EmbeddedResource Include="Resources\TwitchPluginEnabled.png" />
     <Content Include="Skins\Titan\Media\hover_my twitchplugin.png" />
-    <Content Include="Skins\TwitchPlugin.xml">
+    <Content Include="Skins\Titan\Media\image1.jpg" />
+    <Content Include="Skins\Titan\Media\image2.jpg" />
+    <Content Include="Skins\Titan\TwitchPlugin.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

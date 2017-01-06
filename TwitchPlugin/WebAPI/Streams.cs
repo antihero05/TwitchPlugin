@@ -222,7 +222,7 @@ namespace TwitchPlugin.WebAPI
                     Collection.Add(Item);
                 }
             }
-            if (mResponseItemLimit != null)
+            if (mResponseItemLimit != 0)
             {
                 string strResponseItemLimit = mResponseItemLimit.ToString();
                 if (String.IsNullOrEmpty(strResponseItemLimit) == false)
@@ -233,7 +233,7 @@ namespace TwitchPlugin.WebAPI
                     Collection.Add(Item);
                 }
             }
-            if (mResponseItemOffset != null)
+            if (mResponseItemOffset != 0)
             {
                 string strResponseItemOffset = mResponseItemOffset.ToString();
                 if (String.IsNullOrEmpty(strResponseItemOffset) == false)
@@ -255,16 +255,13 @@ namespace TwitchPlugin.WebAPI
                     Collection.Add(Item);
                 }
             }
-            if (mStreamType != null)
+            string strStreamType = mStreamType.ToString();
+            if (String.IsNullOrEmpty(strStreamType) == false)
             {
-                string strStreamType = mStreamType.ToString();
-                if (String.IsNullOrEmpty(strStreamType) == false)
-                {
-                    NamespaceParameter Item = new NamespaceParameter();
-                    Item.Name = "stream_type";
-                    Item.Value = strStreamType;
-                    Collection.Add(Item);
-                }
+                NamespaceParameter Item = new NamespaceParameter();
+                Item.Name = "stream_type";
+                Item.Value = strStreamType;
+                Collection.Add(Item);
             }
             return Collection;
         }

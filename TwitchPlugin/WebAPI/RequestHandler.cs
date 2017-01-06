@@ -21,6 +21,15 @@ namespace TwitchPlugin.WebAPI
 
         #endregion Declaration
 
+        #region Constructors
+
+        static RequestHandler()
+        {
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        }
+
+        #endregion Constructors
+
         #region Methods
 
         static public object Request(INamespace objNamespace)

@@ -79,7 +79,7 @@ namespace TwitchPlugin.WebAPI
     }
 
     /// <summary>
-    /// The class TwitchPlugin.WebAPI.AccessTokenParameters is used for providing supported parameter for URL operations in the namespace "Games" from the Twitch API.
+    /// The class TwitchPlugin.WebAPI.PlaylistParameters is used for providing supported parameter for URL operations in the namespace "Games" from the Twitch API.
     /// </summary>
 
     public class PlaylistParameters : INamespaceParameters
@@ -209,27 +209,21 @@ namespace TwitchPlugin.WebAPI
                     Collection.Add(Item);
                 }
             }
-            if (mAllowAudioOnly != null)
+            string strAllowAudioOnly = mAllowAudioOnly.ToString();
+            if (String.IsNullOrEmpty(strAllowAudioOnly) == false)
             {
-                string strAllowAudioOnly = mAllowAudioOnly.ToString();
-                if (String.IsNullOrEmpty(strAllowAudioOnly) == false)
-                {
-                    NamespaceParameter Item = new NamespaceParameter();
-                    Item.Name = "allow_audio_only";
-                    Item.Value = strAllowAudioOnly;
-                    Collection.Add(Item);
-                }
+                NamespaceParameter Item = new NamespaceParameter();
+                Item.Name = "allow_audio_only";
+                Item.Value = strAllowAudioOnly;
+                Collection.Add(Item);
             }
-            if (mAllowSource != null)
+            string strAllowSource = mAllowSource.ToString();
+            if (String.IsNullOrEmpty(strAllowSource) == false)
             {
-                string strAllowSource = mAllowSource.ToString();
-                if (String.IsNullOrEmpty(strAllowSource) == false)
-                {
-                    NamespaceParameter Item = new NamespaceParameter();
-                    Item.Name = "allow_source";
-                    Item.Value = strAllowSource;
-                    Collection.Add(Item);
-                }
+                NamespaceParameter Item = new NamespaceParameter();
+                Item.Name = "allow_source";
+                Item.Value = strAllowSource;
+                Collection.Add(Item);
             }
             if (mType != null)
             {

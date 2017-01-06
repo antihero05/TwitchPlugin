@@ -136,7 +136,7 @@ namespace TwitchPlugin.WebAPI
         public List<NamespaceParameter> GetParameters()
         {
             List<NamespaceParameter> Collection = new List<NamespaceParameter> { };
-            if (mResponseItemLimit != null)
+            if (mResponseItemLimit != 0)
             {
                 string strResponseItemLimit = mResponseItemLimit.ToString();
                 if (String.IsNullOrEmpty(strResponseItemLimit) == false)
@@ -147,7 +147,7 @@ namespace TwitchPlugin.WebAPI
                     Collection.Add(Item);
                 }
             }
-            if (mResponseItemOffset != null)
+            if (mResponseItemOffset != 0)
             {
                 string strResponseItemOffset = mResponseItemOffset.ToString();
                 if (String.IsNullOrEmpty(strResponseItemOffset) == false)
