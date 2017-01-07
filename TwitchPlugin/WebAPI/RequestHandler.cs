@@ -59,11 +59,30 @@ namespace TwitchPlugin.WebAPI
             HttpWebResponse HTTPResponse = HTTPRequest.GetResponse() as HttpWebResponse;
             if (HTTPResponse.StatusCode == HttpStatusCode.OK)
             {
-                byte[] bytBuffer = new byte[8192];
                 Stream HTTPStream = HTTPResponse.GetResponseStream();
-                int intBytesRead = HTTPStream.Read(bytBuffer, 0, bytBuffer.Length);
-                byte[] bytReturn = new byte[intBytesRead];
-                Buffer.BlockCopy(bytBuffer, 0, bytReturn, 0, intBytesRead);
+                StreamReader HTTPStreamReader = new StreamReader(HTTPStream, Encoding.Default);
+                string HTTPResponseData = HTTPStreamReader.ReadToEnd();
+                byte[] bytReturn = Encoding.Default.GetBytes(HTTPResponseData);
+                return bytReturn;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        static public byte[] Request(string URL ,string MIMEType)
+        {
+            UriBuilder Builder = new UriBuilder(URL);
+            HttpWebRequest HTTPRequest = WebRequest.Create(Builder.Uri) as HttpWebRequest;
+            HTTPRequest.Accept = MIMEType;
+            HttpWebResponse HTTPResponse = HTTPRequest.GetResponse() as HttpWebResponse;
+            if (HTTPResponse.StatusCode == HttpStatusCode.OK)
+            {
+                Stream HTTPStream = HTTPResponse.GetResponseStream();
+                StreamReader HTTPStreamReader = new StreamReader(HTTPStream,Encoding.Default);
+                string HTTPResponseData = HTTPStreamReader.ReadToEnd();
+                byte[] bytReturn = Encoding.Default.GetBytes(HTTPResponseData);
                 return bytReturn;
             }
             else

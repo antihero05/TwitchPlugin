@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using TwitchPlugin.WebAPI;
+using TwitchPlugin.Container;
 
 namespace TestProject
 {
@@ -12,7 +13,7 @@ namespace TestProject
     public class UnitTest
     {
         [TestMethod]
-        public void TestMethod()
+        public void TestMethodWebAPI()
         {
             GamesParameters objGamesParameters = new GamesParameters();
             objGamesParameters.ResponseItemLimit = 12;
@@ -42,6 +43,21 @@ namespace TestProject
             objFileStream.Write(bytReturnedPlaylist,0,bytReturnedPlaylist.Length);
             objFileStream.Close();
             string strReturnedPlaylist = System.Text.Encoding.ASCII.GetString(bytReturnedPlaylist);
-        }        
+        }
+        [TestMethod]
+        public void TestMethodContainer()
+        {
+            GamesParameters objGamesParameters = new GamesParameters();
+            objGamesParameters.ResponseItemLimit = 12;
+            objGamesParameters.ResponseItemOffset = 0;
+            Games objGames = new Games(objGamesParameters.GetParameters());
+            GamesDataContract objReturnedGames = (GamesDataContract)RequestHandler.Request(objGames);
+            List<Game> objGameList = new List<Game>();
+            for (int intLoop = objGamesParameters.ResponseItemOffset; intLoop < objGamesParameters.ResponseItemLimit; intLoop++)
+            {
+                Game objGame = new Game(objReturnedGames, intLoop);
+                objGameList.Add(objGame);
+            }
+        }
     }
 }
